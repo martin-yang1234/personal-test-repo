@@ -1,0 +1,10 @@
+dependencies:
+  override:
+    - pip install -r requirements.txt
+
+fetch:
+  - curl --silent https://shipit.shopify.com/status/version
+
+deploy:
+  override:
+    - python3 main.py
