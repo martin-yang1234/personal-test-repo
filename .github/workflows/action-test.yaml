@@ -1,4 +1,4 @@
-name: Pluto report to Opslevel (Sportsbook Web)
+name: test
 
 on:
   workflow_dispatch:
