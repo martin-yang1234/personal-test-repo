@@ -2,12 +2,15 @@ name: test
 
 on:
   workflow_dispatch:
-  schedule:
-    # Regularly run the action at midnight on Saturday
-    - cron: '8 11 * * *'
+  # schedule:
+  #   # Regularly run the action at midnight on Saturday
+  #   - cron: '8 11 * * *'
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
