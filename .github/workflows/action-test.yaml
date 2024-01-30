@@ -2,9 +2,9 @@ name: test
 
 on:
   workflow_dispatch:
-  schedule:
-    # Regularly run the action at midnight on Saturday
-    - cron: '*/3 * * * *'
+  # schedule:
+  #   # Regularly run the action at midnight on Saturday
+  #   - cron: '*/3 * * * *'
 
 jobs:
   job1:
