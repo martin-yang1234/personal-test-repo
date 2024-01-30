@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # Regularly run the action at midnight on Saturday
-    - cron: '44 16 * * *'
+    - cron: '*/3 * * * *'
 
 jobs:
   job1:
