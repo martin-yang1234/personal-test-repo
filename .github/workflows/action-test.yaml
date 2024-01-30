@@ -1,0 +1,13 @@
+name: Pluto report to Opslevel (Sportsbook Web)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Regularly run the action at midnight on Saturday
+    - cron: '8 11 * * *'
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
