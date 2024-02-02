@@ -27,7 +27,7 @@ jobs:
         run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
       - name: Run shell
         run: |
-          if [[ -n ${{ inputs.template_dir }} ]]; then
+          if [[ -n "${{ inputs.template_dir }}" ]]; then
             echo "Input is not empty"
           else
             echo "Input is empty"
