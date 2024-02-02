@@ -1,6 +1,9 @@
 name: test
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
   # schedule:
   #   # Regularly run the action at midnight on Saturday
