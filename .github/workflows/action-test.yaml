@@ -31,3 +31,4 @@ jobs:
             echo "Input is not empty"
           else
             echo "Input is empty"
+          fi
