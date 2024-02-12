@@ -29,5 +29,6 @@ jobs:
           ref: main
           sparse-checkout: main_repo
           clean: false
+          sparse-checkout-cone-mode: false
       - name: run ls
         run: ls
