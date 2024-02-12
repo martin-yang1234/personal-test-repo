@@ -18,6 +18,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
+      - name: check input
+        run: echo ${{ inputs.service_name }}
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Check out repository code (Casino)
