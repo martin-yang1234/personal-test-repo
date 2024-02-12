@@ -22,11 +22,11 @@ jobs:
         run: echo ${{ inputs.service_name }}
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Check out repository code (Casino)
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          sparse-checkout: main_repo
-        if: ${{ inputs.service_name }} == 'casino'
+      # - name: Check out repository code (Casino)
+      #   uses: actions/checkout@v4
+      #   with:
+      #     ref: main
+      #     sparse-checkout: main_repo
+      #   if: ${{ inputs.service_name }} == 'casino'
       - name: run ls
         run: ls
