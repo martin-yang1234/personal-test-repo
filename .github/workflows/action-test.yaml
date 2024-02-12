@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          sparse-checkout: main-repo
+          sparse-checkout: main_repo
         if: ${{ inputs.service_name }} == 'casino'
       - name: run ls
         run: ls
