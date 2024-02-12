@@ -8,4 +8,13 @@ jobs:
     if:  startsWith(github.head_ref, 'releases/')
     runs-on: ubuntu-latest
     steps:
-      - run: echo "The head of this PR starts with 'releases/'"
+      - name: check input
+        run: echo ${{ inputs.service_name }}
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Check out repository code (Casino)
+        if: ${{ inputs.service_name  == 'casino' }}
+        run:
+          git fetch && git checkout origin/main -- main_repo
+      - name: run ls
+        run: ls
