@@ -28,6 +28,5 @@ jobs:
         with:
           ref: main
           sparse-checkout: main_repo
-        
       - name: run ls
         run: ls
