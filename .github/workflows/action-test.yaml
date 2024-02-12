@@ -24,11 +24,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Check out repository code (Casino)
         if: ${{ inputs.service_name  == 'casino' }}
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          sparse-checkout: main_repo
-          clean: false
-          sparse-checkout-cone-mode: false
+        run:
+          git fetch && git checkout origin/main -- main_repo
       - name: run ls
         run: ls
