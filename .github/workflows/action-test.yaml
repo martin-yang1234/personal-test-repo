@@ -1,35 +1,11 @@
-name: test
+name: first CI TEST
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
-  # schedule:
-  #   # Regularly run the action at midnight on Saturday
-  #   - cron: '*/3 * * * *'
-  workflow_call:
-    inputs:
-      service_name:
-        required: true
-        type: string
-      template_dir:
-        required: false
-        type: string
-        default: ""
-        description: "(For kubernetes-manifests) a path to a directory containing 'kustomization.yaml'"
+- pull_request_target
 
 jobs:
-  job1:
+  run_if:
+    if:  startsWith(github.head_ref, 'releases/')
     runs-on: ubuntu-latest
     steps:
-      - name: Set current date as env variable
-        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-      - name: Run shell
-        run: |
-          if [[ -n "${{ inputs.template_dir }}" ]]; then
-            echo "Input is not empty"
-          
-          else
-            echo "Input is empty"
-          fi
+      - run: echo "The head of this PR starts with 'releases/'"
