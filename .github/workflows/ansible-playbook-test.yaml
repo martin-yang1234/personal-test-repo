@@ -1,0 +1,67 @@
+name: Security patch on-prem nodes
+
+on:
+  workflow_dispatch:
+    inputs:
+      inventory:
+        description: Select inventory
+        type: choice
+        options:
+          - non-prod
+          - non-prod/staging
+          - non-prod/ps
+          - prod
+      playbook:
+        description: Enter playbook
+        type: choice
+        options:
+          - non-prod
+          - non-prod/staging
+          - non-prod/ps
+          - prod
+      dryrun:
+        description: Is this dryrun?
+        type: choice
+        options:
+          - "yes"
+          - "no"
+      ansible_args:
+        description: Extra Ansible arguments
+        type: string
+        
+jobs:
+  run_non_prod_playbook:
+    if: ${{ startsWith(github.event.inputs.inventory, 'non-prod')  }}
+    runs-on: non-prod-scorebet-org-runner
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ansible/playbooks/security-patching.yaml
+          options: |
+            --inventory ansible/inventory/${{ github.event.inputs.inventory }}
+            ${{ needs.check_environment.outputs.dryrun }}
+            ${{ github.event.inputs.ansible_args }}
+
+
+
+  run_production_playbook:
+    if: ${{ startsWith(github.event.inputs.inventory, 'prod')  }}
+    runs-on: prod-scorebet-org-runner
+    environment: ${{ needs.check_environment.outputs.environment }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ansible/playbooks/security-patching.yaml
+          options: |
+            --inventory ansible/inventory/${{ github.event.inputs.inventory }}
+            ${{ needs.check_environment.outputs.dryrun }}
+            ${{ github.event.inputs.ansible_args }}
+
