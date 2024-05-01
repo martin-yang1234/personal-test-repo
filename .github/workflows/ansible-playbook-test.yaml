@@ -15,10 +15,18 @@ on:
         description: Enter playbook
         type: choice
         options:
-          - non-prod
-          - non-prod/staging
-          - non-prod/ps
-          - prod
+        - auditd-logrotate.yaml
+        - base-image.yaml
+        - configure-cluster-nodes.yaml
+        - configure-db-nodes.yaml
+        - configure-sysctl.yaml
+        - lock-file-reboot.yaml
+        - playbook.yml
+        - rack-controller.yaml
+        - reset-break-glass-pass.yaml
+        - security-patching.yaml
+        - sysctl.yaml
+        - upload-kubeconfig.yaml
       dryrun:
         description: Is this dryrun?
         type: choice
